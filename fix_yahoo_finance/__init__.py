@@ -20,9 +20,9 @@
 
 from __future__ import print_function
 
-__version__ = "0.0.18"
+__version__ = "0.0.19"
 __author__ = "Ran Aroussi"
-__all__ = ['download', 'get_yahoo_crumb', 'parse_ticker_csv']
+__all__ = ['download', 'get_yahoo_crumb', 'parse_ticker_csv', 'pdr_override']
 
 
 import datetime
@@ -38,7 +38,7 @@ import multitasking
 
 warnings.simplefilter("once")
 warnings.warn("""
-    Auto-overriding of pandas_datareader's get_data_yahoo() is deprecated and will be removed in future versions.
+    Auto-overriding of pandas_datareader's get_data_yahoo() is deprecated and no longer available.
     Use pdr_override() to explicitly override it.""",
     DeprecationWarning)
 
@@ -221,6 +221,7 @@ def download(tickers, start=None, end=None, as_panel=True,
         print("\nThe following tickers failed to download:\n",
               ', '.join(_FAILED_))
 
+    _DFS_ = {}
     return data
 
 
@@ -439,4 +440,4 @@ def pdr_override():
     except:
         pass
 
-pdr_override()
+# pdr_override()
